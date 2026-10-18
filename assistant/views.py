@@ -2,11 +2,13 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt  # 1. Import this
 from google import genai
 
 def index(request):
     return render(request, 'index.html')
 
+@csrf_exempt  
 def chat_api(request):
     if request.method == 'POST':
         try:
